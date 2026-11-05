@@ -1,0 +1,45 @@
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[project]
+name = "slowrc"
+version = "0.1.0"
+description = "Why does your terminal take so long to open? slowrc profiles your zsh/bash startup line by line and fixes the slow parts safely."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Arka Khorchidian" }]
+requires-python = ">=3.9"
+dependencies = ["rich>=13"]
+keywords = ["zsh", "bash", "shell", "startup", "performance", "profiler", "nvm", "dotfiles", "terminal", "cli"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Operating System :: MacOS",
+  "Operating System :: POSIX :: Linux",
+  "Programming Language :: Python :: 3",
+  "Topic :: System :: Shells",
+  "Topic :: Utilities",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+
+[project.scripts]
+slowrc = "slowrc.cli:run"
+
+[project.urls]
+Homepage = "https://github.com/ArkaKhorchidian/slowrc"
+Issues = "https://github.com/ArkaKhorchidian/slowrc/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/slowrc"]
+
+[tool.hatch.build.targets.sdist]
+exclude = ["docs", ".github"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["tests"]
